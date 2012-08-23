@@ -1,4 +1,24 @@
 #!/usr/bin/perl
+#----------------------------------------------------------------------------
+# I recently moved a subversion repository that contained several projects
+# inside it to Git.  I wrote this to take those projects and make them into
+# their own Git repositories while still keeping history.
+#----------------------------------------------------------------------------
+# This script will make a new git repository from a subdirectory inside an
+# existing git repository.  It moves revision history for the subdirectory
+# and all local branches whether they contain useful revisions or not.
+#----------------------------------------------------------------------------
+# Pardon my lack of bash ninja skills and lack of tests.  This was a quick
+# and dirty project to take the knowledge that someone was kind enough to
+# share on stackoverflow.com and make it into a single easy step so I don't
+# mess it up when doing it repeatedly.                                       
+#
+# Original stackoverflow answer:
+# http://stackoverflow.com/questions/359424/detach-subdirectory-into-separate-git-repository
+#
+# If someone wants to take this, pretty it up, and make an installer or
+# something, by all means.
+#----------------------------------------------------------------------------
 
 my $original_dir = $ARGV[0];
 my $new_dir = $ARGV[1];

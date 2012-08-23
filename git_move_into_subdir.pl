@@ -1,4 +1,21 @@
 #!/usr/bin/perl
+#---------------------------------------------------------------------------
+# Move all the files of a given repository into a subdirectory of that repo
+#---------------------------------------------------------------------------
+# I used this in conjunction with git_make_subdir_repository.pl to move
+# files that used to be in svn as /repo/trunk/MyProjectName and
+# /repo/trunk/MyProjectTests to /my_src_repo/src and /my_tests_repo/tests
+# respectively by making two subdir repositories (tests and src), calling 
+# this script in both repo's, then adding the tests repo to the src repo as
+# a remote, and fetching and merging the contents of the tests repo into the 
+# src repo.
+#
+# This probably creates duplicate commits at the exact same timestamp,
+# but there's no lost revision history.
+#---------------------------------------------------------------------------
+# Pardon my lack of bash ninja skills and lack of tests.  This was a quick
+# and dirty project to move several projects around.
+#---------------------------------------------------------------------------
 
 if (!&is_inside_git_dir) {
 	print "You need to call this from inside a git repository.\n\n";
