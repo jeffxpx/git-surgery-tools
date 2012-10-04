@@ -12,8 +12,12 @@ my @git_repo_dirs = &get_git_repo_dirs($dir);
 
 my @git_no_remote_dirs = &get_no_remote_dirs($dir, \@git_repo_dirs);
 
-$ENV{'BB_USERNAME'} = 'put_your_bitbucket_username_here';
-$ENV{'BB_PASSWORD'} = 'put_your_bitbucket_password_here';
+# either set BB_USERNAME and BB_PASSWORD as part of the environment or set them here...
+if (!exists($ENV{'BB_USERNAME'})) {
+	print "Using SCRIPT variables rather than pre-set ENV variables...\n\n";
+	$ENV{'BB_USERNAME'} = 'put_your_bitbucket_username_here';
+	$ENV{'BB_PASSWORD'} = 'put_your_bitbucket_password_here';
+}
 
 my @remote_repos = &get_remote_repo_list();
 
